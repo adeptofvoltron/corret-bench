@@ -11,7 +11,9 @@ Every task separates tests into two disjoint roles to avoid oracle leakage:
 
 from __future__ import annotations
 
+import ast
 import json
+import urllib.parse
 import urllib.request
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
@@ -23,6 +25,14 @@ MBPP_URL = (
 # Official MBPP test split.
 MBPP_TEST_IDS = range(11, 511)
 
+BCB_HARD_DATASET = "bigcode/bigcodebench-hard"
+BCB_HARD_VERSION = "v0.1.4"
+BCB_ROWS_URL = "https://datasets-server.huggingface.co/rows"
+# Same limits as the official BigCodeBench evaluator: some tasks legitimately run
+# for minutes (psutil/socket timing) and TensorFlow reserves a lot of address space.
+BCB_TIMEOUT_S = 240.0
+BCB_MEMORY_MB = 30 * 1024
+
 
 @dataclass
 class Task:
@@ -32,6 +42,11 @@ class Task:
     unit_tests: str
     ground_truth: str | None = None
     setup_code: str = ""
+    # False when public_tests is not human-readable (e.g. a whole unittest module
+    # that also contains the held-out cases), so it must not go into the prompt.
+    show_public_tests: bool = True
+    exec_timeout_s: float | None = None
+    exec_memory_mb: int | None = None
     meta: dict = field(default_factory=dict)
 
     def to_dict(self) -> dict:
@@ -62,6 +77,69 @@ def _load_mbpp(data_dir: Path, limit: int) -> list[Task]:
                 unit_tests="\n".join(tests),
                 ground_truth=r["code"],
                 setup_code=setup,
+            )
+        )
+    return tasks
+
+
+_UNITTEST_RUNNER = """
+
+import sys as _sys, unittest as _unittest
+_suite = _unittest.TestSuite({cls}(_name) for _name in {names!r})
+_result = _unittest.TextTestRunner(stream=_sys.stderr, verbosity=1).run(_suite)
+if not _result.wasSuccessful():
+    raise AssertionError(f"{{len(_result.failures) + len(_result.errors)}} of {{_result.testsRun}} test(s) failed")
+"""
+
+
+def _unittest_methods(test_code: str) -> tuple[str, list[str]]:
+    """Name of the TestCase class and its test methods, in source order."""
+    for node in ast.parse(test_code).body:
+        if isinstance(node, ast.ClassDef) and any(
+            getattr(b, "attr", getattr(b, "id", "")) == "TestCase" for b in node.bases
+        ):
+            names = [m.name for m in node.body if isinstance(m, ast.FunctionDef) and m.name.startswith("test")]
+            return node.name, names
+    raise ValueError("no unittest.TestCase class found")
+
+
+def _fetch_bcb_hard(path: Path) -> None:
+    rows, offset, total = [], 0, None
+    while total is None or offset < total:
+        query = urllib.parse.urlencode({"dataset": BCB_HARD_DATASET, "config": "default",
+                                        "split": BCB_HARD_VERSION, "offset": offset, "length": 100})
+        with urllib.request.urlopen(f"{BCB_ROWS_URL}?{query}", timeout=60) as resp:
+            page = json.load(resp)
+        total = page["num_rows_total"]
+        rows.extend(r["row"] for r in page["rows"])
+        offset += len(page["rows"])
+        if not page["rows"]:
+            break
+    path.write_text(json.dumps(rows, ensure_ascii=False), encoding="utf-8")
+
+
+def _load_bigcodebench_hard(data_dir: Path, limit: int) -> list[Task]:
+    path = data_dir / f"bigcodebench-hard-{BCB_HARD_VERSION}.json"
+    if not path.exists():
+        data_dir.mkdir(parents=True, exist_ok=True)
+        print(f"Downloading BigCodeBench-Hard {BCB_HARD_VERSION} -> {path}")
+        _fetch_bcb_hard(path)
+
+    tasks = []
+    for r in json.loads(path.read_text(encoding="utf-8"))[:limit]:
+        cls, names = _unittest_methods(r["test"])
+        tasks.append(
+            Task(
+                id=r["task_id"],
+                prompt=r["instruct_prompt"],
+                # Public = first test method only; held-out = the whole TestCase.
+                public_tests=r["test"] + _UNITTEST_RUNNER.format(cls=cls, names=names[:1]),
+                unit_tests=r["test"] + _UNITTEST_RUNNER.format(cls=cls, names=names),
+                ground_truth=r["code_prompt"] + r["canonical_solution"],
+                show_public_tests=False,
+                exec_timeout_s=BCB_TIMEOUT_S,
+                exec_memory_mb=BCB_MEMORY_MB,
+                meta={"public_test": names[0], "n_tests": len(names), "libs": r["libs"]},
             )
         )
     return tasks
@@ -155,12 +233,34 @@ BUILTIN_TASKS = [
 ]
 
 
-def load_tasks(dataset: str, data_dir: Path, limit: int) -> list[Task]:
-    """`dataset` is one of: ``mbpp``, ``builtin``, ``jsonl:<path>``."""
-    if dataset == "mbpp":
-        return _load_mbpp(data_dir, limit)
-    if dataset == "builtin":
-        return BUILTIN_TASKS[:limit]
-    if dataset.startswith("jsonl:"):
-        return _load_jsonl(Path(dataset.split(":", 1)[1]), limit)
-    raise ValueError(f"Unknown DATASET={dataset!r} (expected mbpp | builtin | jsonl:<path>)")
+def exclusions_path(dataset: str, data_dir: Path) -> Path:
+    slug = "".join(c if c.isalnum() or c in "-_" else "_" for c in dataset)
+    return data_dir / f"excluded-{slug}.json"
+
+
+def load_tasks(dataset: str, data_dir: Path, limit: int, apply_exclusions: bool = True) -> list[Task]:
+    """`dataset` is one of: ``mbpp``, ``bigcodebench-hard``, ``builtin``, ``jsonl:<path>``.
+
+    Tasks listed in ``data/excluded-<dataset>.json`` (written by
+    ``main.py --validate-dataset``: reference solution fails in this execution
+    environment) are skipped before ``limit`` is applied.
+    """
+    loaders = {
+        "mbpp": lambda n: _load_mbpp(data_dir, n),
+        "bigcodebench-hard": lambda n: _load_bigcodebench_hard(data_dir, n),
+        "builtin": lambda n: BUILTIN_TASKS[:n],
+    }
+    if dataset in loaders:
+        load = loaders[dataset]
+    elif dataset.startswith("jsonl:"):
+        load = lambda n: _load_jsonl(Path(dataset.split(":", 1)[1]), n)  # noqa: E731
+    else:
+        raise ValueError(f"Unknown DATASET={dataset!r} (expected mbpp | bigcodebench-hard | builtin | jsonl:<path>)")
+
+    excl_file = exclusions_path(dataset, data_dir)
+    if not (apply_exclusions and excl_file.exists()):
+        return load(limit)
+    excluded = set(json.loads(excl_file.read_text(encoding="utf-8")))
+    tasks = [t for t in load(10**9) if t.id not in excluded]
+    print(f"Skipping {len(excluded)} task(s) listed in {excl_file.name}")
+    return tasks[:limit]

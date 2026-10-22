@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -31,6 +32,13 @@ def _env_str(name: str, default: str) -> str:
     return raw or default
 
 
+def _resolve_python(path: str) -> str:
+    """Relative paths such as `.venv-bcb/bin/python` are resolved against the project root."""
+    if os.sep in path and not Path(path).is_absolute():
+        return str(PROJECT_ROOT / path)
+    return path
+
+
 @dataclass(frozen=True)
 class Config:
     model: str
@@ -39,6 +47,8 @@ class Config:
     max_correction_rounds: int
     temperature: float | None
     exec_timeout_s: float
+    exec_python: str
+    exec_memory_mb: int
     concurrency: int
     results_dir: Path
     data_dir: Path
@@ -52,6 +62,8 @@ class Config:
             max_correction_rounds=_env_int("MAX_CORRECTION_ROUNDS", 1),
             temperature=_env_float("TEMPERATURE", 0.0),
             exec_timeout_s=_env_float("EXEC_TIMEOUT_S", 10.0),
+            exec_python=_resolve_python(_env_str("EXEC_PYTHON", sys.executable)),
+            exec_memory_mb=_env_int("EXEC_MEMORY_MB", 4096),
             concurrency=_env_int("CONCURRENCY", 4),
             results_dir=PROJECT_ROOT / _env_str("RESULTS_DIR", "results"),
             data_dir=PROJECT_ROOT / _env_str("DATA_DIR", "data"),

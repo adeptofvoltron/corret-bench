@@ -16,6 +16,7 @@ is recorded for analysis and never feeds back into a stopping decision.
 from __future__ import annotations
 
 import json
+import threading
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import asdict
@@ -71,10 +72,15 @@ class LLM:
 
 def _task_message(task: Task) -> str:
     parts = [task.prompt]
-    if task.public_tests.strip():
+    if task.show_public_tests and task.public_tests.strip():
         parts.append(f"Your code should pass this test:\n```python\n{task.public_tests}\n```")
     parts.append(FORMAT_INSTRUCTION)
     return "\n\n".join(parts)
+
+
+def execute(task: Task, code: str, tests: str, cfg: Config):
+    return run_tests(code, tests, task.setup_code, task.exec_timeout_s or cfg.exec_timeout_s,
+                     python=cfg.exec_python, memory_mb=task.exec_memory_mb or cfg.exec_memory_mb)
 
 
 def _normalize(code: str) -> str:
@@ -86,10 +92,24 @@ class Experiment:
         self.cfg = cfg
         self.llm = llm
         self.console = console or Console()
+        # (task, code, tests) -> ExecResult. Unchanged code is very common (e.g. intrinsic
+        # "return it as is"), and BigCodeBench suites can take minutes to run.
+        self._exec_cache: dict[tuple[str, str, str], object] = {}
+        self._cache_lock = threading.Lock()
+
+    def _exec(self, task: Task, code: str, tests: str):
+        key = (task.id, _normalize(code), tests)
+        with self._cache_lock:
+            if key in self._exec_cache:
+                return self._exec_cache[key]
+        result = execute(task, code, tests, self.cfg)
+        with self._cache_lock:
+            self._exec_cache[key] = result
+        return result
 
     # -- scoring (held-out tests; analysis only) ---------------------------------
     def _score(self, task: Task, code: str) -> dict:
-        r = run_tests(code, task.unit_tests, task.setup_code, self.cfg.exec_timeout_s)
+        r = self._exec(task, code, task.unit_tests)
         return {"correct": r.passed, "exec": r.to_dict()}
 
     # -- arms --------------------------------------------------------------------
@@ -127,7 +147,7 @@ class Experiment:
         rounds = []
         stop_reason = "max_rounds"
         for _ in range(self.cfg.max_correction_rounds):
-            check = run_tests(code, task.public_tests, task.setup_code, self.cfg.exec_timeout_s)
+            check = self._exec(task, code, task.public_tests)
             if check.passed:
                 stop_reason = "public_tests_passed"
                 break
@@ -139,7 +159,7 @@ class Experiment:
             code = extract_code(text)
             rounds.append({"feedback": feedback, "response": text, "code": code, "usage": usage,
                            "hidden_correct": self._score(task, code)["correct"]})
-        final_public = run_tests(code, task.public_tests, task.setup_code, self.cfg.exec_timeout_s)
+        final_public = self._exec(task, code, task.public_tests)
         return {
             "rounds": rounds,
             "stop_reason": stop_reason,

@@ -20,11 +20,13 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 
 SENTINEL = "__ALL_TESTS_PASSED_7f3a__"
-MAX_FEEDBACK_CHARS = 3000
+MAX_FEEDBACK_CHARS = 4000
 
 _RUNNER = f'''
-import sys, traceback
-ns = {{"__name__": "solution"}}
+import sys, traceback, types
+_module = types.ModuleType("solution")
+sys.modules["solution"] = _module
+ns = _module.__dict__
 
 def _run(path):
     with open(path, encoding="utf-8") as fh:
@@ -80,20 +82,30 @@ class ExecResult:
         return d
 
 
-def _limits(cpu_s: int):
+def _limits(cpu_s: int, memory_mb: int):
     def apply():
         import resource
 
         resource.setrlimit(resource.RLIMIT_CPU, (cpu_s, cpu_s + 1))
-        mem = 1024 * 1024 * 1024
-        resource.setrlimit(resource.RLIMIT_AS, (mem, mem))
+        if memory_mb > 0:
+            mem = memory_mb * 1024 * 1024
+            resource.setrlimit(resource.RLIMIT_AS, (mem, mem))
         fsize = 10 * 1024 * 1024
         resource.setrlimit(resource.RLIMIT_FSIZE, (fsize, fsize))
 
     return apply
 
 
-def run_tests(solution: str, tests: str, setup_code: str = "", timeout_s: float = 10.0) -> ExecResult:
+def run_tests(
+    solution: str,
+    tests: str,
+    setup_code: str = "",
+    timeout_s: float = 10.0,
+    python: str | None = None,
+    memory_mb: int = 4096,
+) -> ExecResult:
+    """`python` selects the interpreter (e.g. a venv with benchmark libraries).
+    `memory_mb` <= 0 disables the address-space limit."""
     with tempfile.TemporaryDirectory(prefix="sc_eval_") as tmp:
         tmp_path = Path(tmp)
         (tmp_path / "_runner.py").write_text(_RUNNER, encoding="utf-8")
@@ -101,11 +113,20 @@ def run_tests(solution: str, tests: str, setup_code: str = "", timeout_s: float 
         (tmp_path / "solution.py").write_text(solution, encoding="utf-8")
         (tmp_path / "tests.py").write_text(tests, encoding="utf-8")
 
-        env = {"PATH": os.environ.get("PATH", "/usr/bin:/bin"), "PYTHONHASHSEED": "0", "LANG": "C.UTF-8"}
-        preexec = _limits(int(timeout_s) + 1) if sys.platform != "win32" else None
+        env = {
+            "PATH": os.environ.get("PATH", "/usr/bin:/bin"),
+            "PYTHONHASHSEED": "0",
+            "LANG": "C.UTF-8",
+            "HOME": tmp,
+            "MPLBACKEND": "Agg",
+            "MPLCONFIGDIR": tmp,
+            "TF_CPP_MIN_LOG_LEVEL": "3",
+            "OMP_NUM_THREADS": "1",
+        }
+        preexec = _limits(int(timeout_s) + 1, memory_mb) if sys.platform != "win32" else None
 
         proc = subprocess.Popen(
-            [sys.executable, "-I", "_runner.py"],
+            [python or sys.executable, "-I", "_runner.py"],
             cwd=tmp,
             env=env,
             stdin=subprocess.DEVNULL,
