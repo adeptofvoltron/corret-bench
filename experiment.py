@@ -58,7 +58,9 @@ class LLM:
             resp = self.client.chat.completions.create(**kwargs)
         except openai.BadRequestError as exc:
             # Reasoning models (o-series, gpt-5) reject a custom temperature.
-            if "temperature" not in str(exc) or self.temperature is None:
+            # Check this request's kwargs, not self.temperature: another thread may
+            # have already cleared it after the same error.
+            if "temperature" not in str(exc) or "temperature" not in kwargs:
                 raise
             self.temperature = None
             kwargs.pop("temperature")
