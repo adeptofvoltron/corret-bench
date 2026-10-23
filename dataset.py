@@ -33,6 +33,17 @@ BCB_ROWS_URL = "https://datasets-server.huggingface.co/rows"
 BCB_TIMEOUT_S = 240.0
 BCB_MEMORY_MB = 30 * 1024
 
+# Tasks whose reference solution passes or fails depending on machine load. Validation
+# can miss them, so they are always excluded, on top of data/excluded-<dataset>.json.
+KNOWN_UNSTABLE = {
+    "bigcodebench-hard": {
+        "BigCodeBench/1040": "socket server timing test; fails under parallel load",
+    },
+}
+
+# Interpreter used when EXEC_PYTHON / --exec-python is not given (relative to the project root).
+DEFAULT_EXEC_PYTHON = {"bigcodebench-hard": ".venv-bcb/bin/python"}
+
 
 @dataclass
 class Task:
@@ -243,7 +254,7 @@ def load_tasks(dataset: str, data_dir: Path, limit: int, apply_exclusions: bool 
 
     Tasks listed in ``data/excluded-<dataset>.json`` (written by
     ``main.py --validate-dataset``: reference solution fails in this execution
-    environment) are skipped before ``limit`` is applied.
+    environment) and in ``KNOWN_UNSTABLE`` are skipped before ``limit`` is applied.
     """
     loaders = {
         "mbpp": lambda n: _load_mbpp(data_dir, n),
@@ -257,10 +268,14 @@ def load_tasks(dataset: str, data_dir: Path, limit: int, apply_exclusions: bool 
     else:
         raise ValueError(f"Unknown DATASET={dataset!r} (expected mbpp | bigcodebench-hard | builtin | jsonl:<path>)")
 
-    excl_file = exclusions_path(dataset, data_dir)
-    if not (apply_exclusions and excl_file.exists()):
+    if not apply_exclusions:
         return load(limit)
-    excluded = set(json.loads(excl_file.read_text(encoding="utf-8")))
+    excluded = set(KNOWN_UNSTABLE.get(dataset, {}))
+    excl_file = exclusions_path(dataset, data_dir)
+    if excl_file.exists():
+        excluded |= set(json.loads(excl_file.read_text(encoding="utf-8")))
+    if not excluded:
+        return load(limit)
     tasks = [t for t in load(10**9) if t.id not in excluded]
-    print(f"Skipping {len(excluded)} task(s) listed in {excl_file.name}")
+    print(f"Skipping {len(excluded)} excluded task(s): {', '.join(sorted(excluded))}")
     return tasks[:limit]

@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import os
-import sys
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -47,7 +46,7 @@ class Config:
     max_correction_rounds: int
     temperature: float | None
     exec_timeout_s: float
-    exec_python: str
+    exec_python: str | None
     exec_memory_mb: int
     concurrency: int
     results_dir: Path
@@ -62,7 +61,7 @@ class Config:
             max_correction_rounds=_env_int("MAX_CORRECTION_ROUNDS", 1),
             temperature=_env_float("TEMPERATURE", 0.0),
             exec_timeout_s=_env_float("EXEC_TIMEOUT_S", 10.0),
-            exec_python=_resolve_python(_env_str("EXEC_PYTHON", sys.executable)),
+            exec_python=_resolve_python(os.getenv("EXEC_PYTHON", "").split("#", 1)[0].strip()) or None,
             exec_memory_mb=_env_int("EXEC_MEMORY_MB", 4096),
             concurrency=_env_int("CONCURRENCY", 4),
             results_dir=PROJECT_ROOT / _env_str("RESULTS_DIR", "results"),
