@@ -1,6 +1,6 @@
 .env
-results/
-data/
+data/*
+!data/excluded-*.json
 __pycache__/
 .venv/
 .venv-bcb/

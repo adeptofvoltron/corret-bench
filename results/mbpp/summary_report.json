@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "model": "gpt-6-sol",
+    "dataset": "mbpp",
+    "max_correction_rounds": 1,
+    "temperature": 0.0,
+    "timestamp": "2026-10-22T14:18:46+00:00",
+    "n_tasks": 50,
+    "n_evaluated": 50,
+    "n_errors": 0
+  },
+  "accuracy": {
+    "baseline": 96.0,
+    "intrinsic": 96.0,
+    "grounded": 96.0
+  },
+  "variants": {
+    "intrinsic": {
+      "transitions": {
+        "C->C": 48,
+        "C->I": 0,
+        "I->C": 0,
+        "I->I": 2
+      },
+      "transitions_pct": {
+        "C->C": 96.0,
+        "C->I": 0.0,
+        "I->C": 0.0,
+        "I->I": 4.0
+      },
+      "accuracy": 96.0,
+      "net_accuracy_change_pp": 0.0,
+      "destroyed_pct_of_all": 0.0,
+      "repaired_pct_of_all": 0.0,
+      "destruction_rate_pct": 0.0,
+      "repair_rate_pct": 0.0,
+      "avg_rounds": 1.0,
+      "stop_reasons": {
+        "model_kept_answer": 50
+      }
+    },
+    "grounded": {
+      "transitions": {
+        "C->C": 48,
+        "C->I": 0,
+        "I->C": 0,
+        "I->I": 2
+      },
+      "transitions_pct": {
+        "C->C": 96.0,
+        "C->I": 0.0,
+        "I->C": 0.0,
+        "I->I": 4.0
+      },
+      "accuracy": 96.0,
+      "net_accuracy_change_pp": 0.0,
+      "destroyed_pct_of_all": 0.0,
+      "repaired_pct_of_all": 0.0,
+      "destruction_rate_pct": 0.0,
+      "repair_rate_pct": 0.0,
+      "avg_rounds": 0.0,
+      "stop_reasons": {
+        "public_tests_passed": 50
+      },
+      "feedback_triggered": 0,
+      "accepted_but_hidden_fail": 2
+    }
+  },
+  "tokens": {
+    "prompt_tokens": 14059,
+    "completion_tokens": 8506
+  }
+}

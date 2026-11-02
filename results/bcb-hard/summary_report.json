@@ -1,0 +1,75 @@
+{
+  "meta": {
+    "model": "gpt-6-sol",
+    "dataset": "bigcodebench-hard",
+    "max_correction_rounds": 1,
+    "temperature": 0.0,
+    "timestamp": "2026-10-23T14:44:20+00:00",
+    "n_tasks": 50,
+    "n_evaluated": 50,
+    "n_errors": 0
+  },
+  "accuracy": {
+    "baseline": 34.0,
+    "intrinsic": 34.0,
+    "grounded": 48.0
+  },
+  "variants": {
+    "intrinsic": {
+      "transitions": {
+        "C->C": 17,
+        "C->I": 0,
+        "I->C": 0,
+        "I->I": 33
+      },
+      "transitions_pct": {
+        "C->C": 34.0,
+        "C->I": 0.0,
+        "I->C": 0.0,
+        "I->I": 66.0
+      },
+      "accuracy": 34.0,
+      "net_accuracy_change_pp": 0.0,
+      "destroyed_pct_of_all": 0.0,
+      "repaired_pct_of_all": 0.0,
+      "destruction_rate_pct": 0.0,
+      "repair_rate_pct": 0.0,
+      "avg_rounds": 1.0,
+      "stop_reasons": {
+        "max_rounds": 2,
+        "model_kept_answer": 48
+      }
+    },
+    "grounded": {
+      "transitions": {
+        "C->C": 17,
+        "C->I": 0,
+        "I->C": 7,
+        "I->I": 26
+      },
+      "transitions_pct": {
+        "C->C": 34.0,
+        "C->I": 0.0,
+        "I->C": 14.0,
+        "I->I": 52.0
+      },
+      "accuracy": 48.0,
+      "net_accuracy_change_pp": 14.0,
+      "destroyed_pct_of_all": 0.0,
+      "repaired_pct_of_all": 14.0,
+      "destruction_rate_pct": 0.0,
+      "repair_rate_pct": 21.21,
+      "avg_rounds": 0.4,
+      "stop_reasons": {
+        "max_rounds": 20,
+        "public_tests_passed": 30
+      },
+      "feedback_triggered": 20,
+      "accepted_but_hidden_fail": 21
+    }
+  },
+  "tokens": {
+    "prompt_tokens": 52107,
+    "completion_tokens": 58750
+  }
+}

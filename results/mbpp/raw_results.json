@@ -1,0 +1,4267 @@
+{
+  "config": {
+    "model": "gpt-6-sol",
+    "max_samples": "50",
+    "dataset": "mbpp",
+    "max_correction_rounds": "1",
+    "temperature": "0.0",
+    "exec_timeout_s": "10.0",
+    "exec_python": "/home/bernard/workspace/corret-bench/.venv/bin/python",
+    "exec_memory_mb": "4096",
+    "concurrency": "4",
+    "results_dir": "/home/bernard/workspace/corret-bench/results",
+    "data_dir": "/home/bernard/workspace/corret-bench/data"
+  },
+  "results": [
+    {
+      "id": "mbpp/11",
+      "prompt": "Write a python function to remove first and last occurrence of a given character from the string.",
+      "public_tests": "assert remove_Occ(\"hello\",\"l\") == \"heo\"",
+      "baseline": {
+        "response": "```python\ndef remove_Occ(text, char):\n    first = text.find(char)\n    if first == -1:\n        return text\n\n    last = text.rfind(char)\n    if first == last:\n        return text[:first] + text[first + 1:]\n\n    return text[:first] + text[first + 1:last] + text[last + 1:]\n```",
+        "code": "def remove_Occ(text, char):\n    first = text.find(char)\n    if first == -1:\n        return text\n\n    last = text.rfind(char)\n    if first == last:\n        return text[:first] + text[first + 1:]\n\n    return text[:first] + text[first + 1:last] + text[last + 1:]",
+        "usage": {
+          "completion_tokens": 212,
+          "prompt_tokens": 81,
+          "total_tokens": 293,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 125,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef remove_Occ(text, char):\n    first = text.find(char)\n    if first == -1:\n        return text\n\n    last = text.rfind(char)\n    if first == last:\n        return text[:first] + text[first + 1:]\n\n    return text[:first] + text[first + 1:last] + text[last + 1:]\n```",
+            "code": "def remove_Occ(text, char):\n    first = text.find(char)\n    if first == -1:\n        return text\n\n    last = text.rfind(char)\n    if first == last:\n        return text[:first] + text[first + 1:]\n\n    return text[:first] + text[first + 1:last] + text[last + 1:]",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 118,
+              "prompt_tokens": 218,
+              "total_tokens": 336,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 31,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def remove_Occ(text, char):\n    first = text.find(char)\n    if first == -1:\n        return text\n\n    last = text.rfind(char)\n    if first == last:\n        return text[:first] + text[first + 1:]\n\n    return text[:first] + text[first + 1:last] + text[last + 1:]",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def remove_Occ(text, char):\n    first = text.find(char)\n    if first == -1:\n        return text\n\n    last = text.rfind(char)\n    if first == last:\n        return text[:first] + text[first + 1:]\n\n    return text[:first] + text[first + 1:last] + text[last + 1:]",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 8.65
+    },
+    {
+      "id": "mbpp/12",
+      "prompt": "Write a function to sort a given matrix in ascending order according to the sum of its rows.",
+      "public_tests": "assert sort_matrix([[1, 2, 3], [2, 4, 5], [1, 1, 1]])==[[1, 1, 1], [1, 2, 3], [2, 4, 5]]",
+      "baseline": {
+        "response": "```python\ndef sort_matrix(matrix):\n    return sorted(matrix, key=sum)\n```",
+        "code": "def sort_matrix(matrix):\n    return sorted(matrix, key=sum)",
+        "usage": {
+          "completion_tokens": 20,
+          "prompt_tokens": 127,
+          "total_tokens": 147,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef sort_matrix(matrix):\n    return sorted(matrix, key=sum)\n```",
+            "code": "def sort_matrix(matrix):\n    return sorted(matrix, key=sum)",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 20,
+              "prompt_tokens": 203,
+              "total_tokens": 223,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def sort_matrix(matrix):\n    return sorted(matrix, key=sum)",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def sort_matrix(matrix):\n    return sorted(matrix, key=sum)",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 4.69
+    },
+    {
+      "id": "mbpp/14",
+      "prompt": "Write a python function to find the volume of a triangular prism.",
+      "public_tests": "assert find_Volume(10,8,6) == 240",
+      "baseline": {
+        "response": "```python\ndef find_Volume(base, height, length):\n    return (base * height * length) / 2\n```",
+        "code": "def find_Volume(base, height, length):\n    return (base * height * length) / 2",
+        "usage": {
+          "completion_tokens": 88,
+          "prompt_tokens": 79,
+          "total_tokens": 167,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 51,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef find_Volume(base, height, length):\n    return (base * height * length) / 2\n```",
+            "code": "def find_Volume(base, height, length):\n    return (base * height * length) / 2",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 42,
+              "prompt_tokens": 166,
+              "total_tokens": 208,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 5,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def find_Volume(base, height, length):\n    return (base * height * length) / 2",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def find_Volume(base, height, length):\n    return (base * height * length) / 2",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 5.84
+    },
+    {
+      "id": "mbpp/16",
+      "prompt": "Write a function to that returns true if the input string contains sequences of lowercase letters joined with an underscore and false otherwise.",
+      "public_tests": "assert text_lowercase_underscore(\"aab_cbbbc\")==(True)",
+      "baseline": {
+        "response": "```python\nimport re\n\n\ndef text_lowercase_underscore(text: str) -> bool:\n    return bool(re.search(r\"[a-z]+_[a-z]+\", text))\n```",
+        "code": "import re\n\n\ndef text_lowercase_underscore(text: str) -> bool:\n    return bool(re.search(r\"[a-z]+_[a-z]+\", text))",
+        "usage": {
+          "completion_tokens": 130,
+          "prompt_tokens": 90,
+          "total_tokens": 220,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 84,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": false,
+        "exec": {
+          "passed": false,
+          "exit_code": 1,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"tests.py\", line 3, in <module>\n    assert text_lowercase_underscore(\"Aaab_abbbc\")==(False)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\nimport re\n\n\ndef text_lowercase_underscore(text: str) -> bool:\n    return bool(re.search(r\"[a-z]+_[a-z]+\", text))\n```",
+            "code": "import re\n\n\ndef text_lowercase_underscore(text: str) -> bool:\n    return bool(re.search(r\"[a-z]+_[a-z]+\", text))",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 67,
+              "prompt_tokens": 186,
+              "total_tokens": 253,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 21,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": false
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "import re\n\n\ndef text_lowercase_underscore(text: str) -> bool:\n    return bool(re.search(r\"[a-z]+_[a-z]+\", text))",
+        "correct": false,
+        "exec": {
+          "passed": false,
+          "exit_code": 1,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"tests.py\", line 3, in <module>\n    assert text_lowercase_underscore(\"Aaab_abbbc\")==(False)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "import re\n\n\ndef text_lowercase_underscore(text: str) -> bool:\n    return bool(re.search(r\"[a-z]+_[a-z]+\", text))",
+        "final_public_passed": true,
+        "correct": false,
+        "exec": {
+          "passed": false,
+          "exit_code": 1,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"tests.py\", line 3, in <module>\n    assert text_lowercase_underscore(\"Aaab_abbbc\")==(False)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+        }
+      },
+      "elapsed_s": 6.42
+    },
+    {
+      "id": "mbpp/17",
+      "prompt": "Write a function that returns the perimeter of a square given its side length as input.",
+      "public_tests": "assert square_perimeter(10)==40",
+      "baseline": {
+        "response": "```python\ndef square_perimeter(side_length):\n    return 4 * side_length\n```",
+        "code": "def square_perimeter(side_length):\n    return 4 * side_length",
+        "usage": {
+          "completion_tokens": 22,
+          "prompt_tokens": 76,
+          "total_tokens": 98,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef square_perimeter(side_length):\n    return 4 * side_length\n```",
+            "code": "def square_perimeter(side_length):\n    return 4 * side_length",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 22,
+              "prompt_tokens": 154,
+              "total_tokens": 176,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def square_perimeter(side_length):\n    return 4 * side_length",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def square_perimeter(side_length):\n    return 4 * side_length",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 3.19
+    },
+    {
+      "id": "mbpp/18",
+      "prompt": "Write a function to remove characters from the first string which are present in the second string.",
+      "public_tests": "assert remove_dirty_chars(\"probasscurve\", \"pros\") == 'bacuve'",
+      "baseline": {
+        "response": "```python\ndef remove_dirty_chars(first, second):\n    unwanted = set(second)\n    return \"\".join(char for char in first if char not in unwanted)\n```",
+        "code": "def remove_dirty_chars(first, second):\n    unwanted = set(second)\n    return \"\".join(char for char in first if char not in unwanted)",
+        "usage": {
+          "completion_tokens": 92,
+          "prompt_tokens": 85,
+          "total_tokens": 177,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 50,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef remove_dirty_chars(first, second):\n    unwanted = set(second)\n    return \"\".join(char for char in first if char not in unwanted)\n```",
+            "code": "def remove_dirty_chars(first, second):\n    unwanted = set(second)\n    return \"\".join(char for char in first if char not in unwanted)",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 82,
+              "prompt_tokens": 177,
+              "total_tokens": 259,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 40,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def remove_dirty_chars(first, second):\n    unwanted = set(second)\n    return \"\".join(char for char in first if char not in unwanted)",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def remove_dirty_chars(first, second):\n    unwanted = set(second)\n    return \"\".join(char for char in first if char not in unwanted)",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 3.73
+    },
+    {
+      "id": "mbpp/19",
+      "prompt": "Write a function to find whether a given array of integers contains any duplicate element.",
+      "public_tests": "assert test_duplicate(([1,2,3,4,5]))==False",
+      "baseline": {
+        "response": "```python\ndef test_duplicate(numbers):\n    return len(numbers) != len(set(numbers))\n```",
+        "code": "def test_duplicate(numbers):\n    return len(numbers) != len(set(numbers))",
+        "usage": {
+          "completion_tokens": 32,
+          "prompt_tokens": 83,
+          "total_tokens": 115,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 4,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef test_duplicate(numbers):\n    return len(numbers) != len(set(numbers))\n```",
+            "code": "def test_duplicate(numbers):\n    return len(numbers) != len(set(numbers))",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 22,
+              "prompt_tokens": 161,
+              "total_tokens": 183,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def test_duplicate(numbers):\n    return len(numbers) != len(set(numbers))",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def test_duplicate(numbers):\n    return len(numbers) != len(set(numbers))",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 2.86
+    },
+    {
+      "id": "mbpp/20",
+      "prompt": "Write a function to check if the given number is woodball or not.",
+      "public_tests": "assert is_woodall(383) == True",
+      "baseline": {
+        "response": "```python\ndef is_woodall(number):\n    if not isinstance(number, int) or isinstance(number, bool) or number < 1:\n        return False\n\n    n = 1\n    while n * (1 << n) - 1 <= number:\n        if n * (1 << n) - 1 == number:\n            return True\n        n += 1\n\n    return False\n```",
+        "code": "def is_woodall(number):\n    if not isinstance(number, int) or isinstance(number, bool) or number < 1:\n        return False\n\n    n = 1\n    while n * (1 << n) - 1 <= number:\n        if n * (1 << n) - 1 == number:\n            return True\n        n += 1\n\n    return False",
+        "usage": {
+          "completion_tokens": 219,
+          "prompt_tokens": 76,
+          "total_tokens": 295,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 125,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef is_woodall(number):\n    if not isinstance(number, int) or isinstance(number, bool) or number < 1:\n        return False\n\n    n = 1\n    while n * (1 << n) - 1 <= number:\n        if n * (1 << n) - 1 == number:\n            return True\n        n += 1\n\n    return False\n```",
+            "code": "def is_woodall(number):\n    if not isinstance(number, int) or isinstance(number, bool) or number < 1:\n        return False\n\n    n = 1\n    while n * (1 << n) - 1 <= number:\n        if n * (1 << n) - 1 == number:\n            return True\n        n += 1\n\n    return False",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 116,
+              "prompt_tokens": 220,
+              "total_tokens": 336,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 22,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def is_woodall(number):\n    if not isinstance(number, int) or isinstance(number, bool) or number < 1:\n        return False\n\n    n = 1\n    while n * (1 << n) - 1 <= number:\n        if n * (1 << n) - 1 == number:\n            return True\n        n += 1\n\n    return False",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def is_woodall(number):\n    if not isinstance(number, int) or isinstance(number, bool) or number < 1:\n        return False\n\n    n = 1\n    while n * (1 << n) - 1 <= number:\n        if n * (1 << n) - 1 == number:\n            return True\n        n += 1\n\n    return False",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 6.0
+    },
+    {
+      "id": "mbpp/56",
+      "prompt": "Write a python function to check if a given number is one less than twice its reverse.",
+      "public_tests": "assert check(70) == False",
+      "baseline": {
+        "response": "```python\ndef check(number):\n    sign = -1 if number < 0 else 1\n    reverse = sign * int(str(abs(number))[::-1])\n    return number == 2 * reverse - 1\n```",
+        "code": "def check(number):\n    sign = -1 if number < 0 else 1\n    reverse = sign * int(str(abs(number))[::-1])\n    return number == 2 * reverse - 1",
+        "usage": {
+          "completion_tokens": 240,
+          "prompt_tokens": 76,
+          "total_tokens": 316,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 184,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef check(number):\n    sign = -1 if number < 0 else 1\n    reverse = sign * int(str(abs(number))[::-1])\n    return number == 2 * reverse - 1\n```",
+            "code": "def check(number):\n    sign = -1 if number < 0 else 1\n    reverse = sign * int(str(abs(number))[::-1])\n    return number == 2 * reverse - 1",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 92,
+              "prompt_tokens": 182,
+              "total_tokens": 274,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 36,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def check(number):\n    sign = -1 if number < 0 else 1\n    reverse = sign * int(str(abs(number))[::-1])\n    return number == 2 * reverse - 1",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def check(number):\n    sign = -1 if number < 0 else 1\n    reverse = sign * int(str(abs(number))[::-1])\n    return number == 2 * reverse - 1",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 6.25
+    },
+    {
+      "id": "mbpp/57",
+      "prompt": "Write a python function to find the largest number that can be formed with the given list of digits.",
+      "public_tests": "assert find_Max_Num([1,2,3]) == 321",
+      "baseline": {
+        "response": "```python\ndef find_Max_Num(digits):\n    return int(\"\".join(map(str, sorted(digits, reverse=True)))) if digits else 0\n```",
+        "code": "def find_Max_Num(digits):\n    return int(\"\".join(map(str, sorted(digits, reverse=True)))) if digits else 0",
+        "usage": {
+          "completion_tokens": 74,
+          "prompt_tokens": 85,
+          "total_tokens": 159,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 32,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef find_Max_Num(digits):\n    return int(\"\".join(map(str, sorted(digits, reverse=True)))) if digits else 0\n```",
+            "code": "def find_Max_Num(digits):\n    return int(\"\".join(map(str, sorted(digits, reverse=True)))) if digits else 0",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 64,
+              "prompt_tokens": 177,
+              "total_tokens": 241,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 22,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def find_Max_Num(digits):\n    return int(\"\".join(map(str, sorted(digits, reverse=True)))) if digits else 0",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def find_Max_Num(digits):\n    return int(\"\".join(map(str, sorted(digits, reverse=True)))) if digits else 0",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 3.74
+    },
+    {
+      "id": "mbpp/58",
+      "prompt": "Write a python function to check whether the given two integers have opposite sign or not.",
+      "public_tests": "assert opposite_Signs(1,-2) == True",
+      "baseline": {
+        "response": "```python\ndef opposite_Signs(a: int, b: int) -> bool:\n    return (a < 0 < b) or (b < 0 < a)\n```",
+        "code": "def opposite_Signs(a: int, b: int) -> bool:\n    return (a < 0 < b) or (b < 0 < a)",
+        "usage": {
+          "completion_tokens": 41,
+          "prompt_tokens": 79,
+          "total_tokens": 120,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef opposite_Signs(a: int, b: int) -> bool:\n    return (a < 0 < b) or (b < 0 < a)\n```",
+            "code": "def opposite_Signs(a: int, b: int) -> bool:\n    return (a < 0 < b) or (b < 0 < a)",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 79,
+              "prompt_tokens": 176,
+              "total_tokens": 255,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 32,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def opposite_Signs(a: int, b: int) -> bool:\n    return (a < 0 < b) or (b < 0 < a)",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def opposite_Signs(a: int, b: int) -> bool:\n    return (a < 0 < b) or (b < 0 < a)",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 3.08
+    },
+    {
+      "id": "mbpp/59",
+      "prompt": "Write a function to find the nth octagonal number.",
+      "public_tests": "assert is_octagonal(5) == 65",
+      "baseline": {
+        "response": "```python\ndef is_octagonal(n):\n    return n * (3 * n - 2)\n```",
+        "code": "def is_octagonal(n):\n    return n * (3 * n - 2)",
+        "usage": {
+          "completion_tokens": 69,
+          "prompt_tokens": 72,
+          "total_tokens": 141,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 38,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef is_octagonal(n):\n    return n * (3 * n - 2)\n```",
+            "code": "def is_octagonal(n):\n    return n * (3 * n - 2)",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 25,
+              "prompt_tokens": 153,
+              "total_tokens": 178,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def is_octagonal(n):\n    return n * (3 * n - 2)",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def is_octagonal(n):\n    return n * (3 * n - 2)",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 2.83
+    },
+    {
+      "id": "mbpp/61",
+      "prompt": "Write a python function to count the number of substrings with the sum of digits equal to their length.",
+      "public_tests": "assert count_Substrings('112112') == 6",
+      "baseline": {
+        "response": "```python\ndef count_Substrings(s: str) -> int:\n    counts = {0: 1}\n    balance = 0\n    total = 0\n\n    for digit in s:\n        balance += int(digit) - 1\n        total += counts.get(balance, 0)\n        counts[balance] = counts.get(balance, 0) + 1\n\n    return total\n```",
+        "code": "def count_Substrings(s: str) -> int:\n    counts = {0: 1}\n    balance = 0\n    total = 0\n\n    for digit in s:\n        balance += int(digit) - 1\n        total += counts.get(balance, 0)\n        counts[balance] = counts.get(balance, 0) + 1\n\n    return total",
+        "usage": {
+          "completion_tokens": 173,
+          "prompt_tokens": 83,
+          "total_tokens": 256,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 80,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef count_Substrings(s: str) -> int:\n    counts = {0: 1}\n    balance = 0\n    total = 0\n\n    for digit in s:\n        balance += int(digit) - 1\n        total += counts.get(balance, 0)\n        counts[balance] = counts.get(balance, 0) + 1\n\n    return total\n```",
+            "code": "def count_Substrings(s: str) -> int:\n    counts = {0: 1}\n    balance = 0\n    total = 0\n\n    for digit in s:\n        balance += int(digit) - 1\n        total += counts.get(balance, 0)\n        counts[balance] = counts.get(balance, 0) + 1\n\n    return total",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 122,
+              "prompt_tokens": 226,
+              "total_tokens": 348,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 29,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def count_Substrings(s: str) -> int:\n    counts = {0: 1}\n    balance = 0\n    total = 0\n\n    for digit in s:\n        balance += int(digit) - 1\n        total += counts.get(balance, 0)\n        counts[balance] = counts.get(balance, 0) + 1\n\n    return total",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def count_Substrings(s: str) -> int:\n    counts = {0: 1}\n    balance = 0\n    total = 0\n\n    for digit in s:\n        balance += int(digit) - 1\n        total += counts.get(balance, 0)\n        counts[balance] = counts.get(balance, 0) + 1\n\n    return total",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 6.8
+    },
+    {
+      "id": "mbpp/62",
+      "prompt": "Write a python function to find smallest number in a list.",
+      "public_tests": "assert smallest_num([10, 20, 1, 45, 99]) == 1",
+      "baseline": {
+        "response": "```python\ndef smallest_num(numbers):\n    return min(numbers)\n```",
+        "code": "def smallest_num(numbers):\n    return min(numbers)",
+        "usage": {
+          "completion_tokens": 40,
+          "prompt_tokens": 84,
+          "total_tokens": 124,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 17,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef smallest_num(numbers):\n    return min(numbers)\n```",
+            "code": "def smallest_num(numbers):\n    return min(numbers)",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 17,
+              "prompt_tokens": 157,
+              "total_tokens": 174,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def smallest_num(numbers):\n    return min(numbers)",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def smallest_num(numbers):\n    return min(numbers)",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 3.1
+    },
+    {
+      "id": "mbpp/63",
+      "prompt": "Write a function to find the maximum difference between available pairs in the given tuple list.",
+      "public_tests": "assert max_difference([(3, 5), (1, 7), (10, 3), (1, 2)]) == 7",
+      "baseline": {
+        "response": "```python\ndef max_difference(pairs):\n    return max((abs(a - b) for a, b in pairs), default=0)\n```",
+        "code": "def max_difference(pairs):\n    return max((abs(a - b) for a, b in pairs), default=0)",
+        "usage": {
+          "completion_tokens": 118,
+          "prompt_tokens": 98,
+          "total_tokens": 216,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 79,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef max_difference(pairs):\n    return max((abs(a - b) for a, b in pairs), default=0)\n```",
+            "code": "def max_difference(pairs):\n    return max((abs(a - b) for a, b in pairs), default=0)",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 60,
+              "prompt_tokens": 187,
+              "total_tokens": 247,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 21,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def max_difference(pairs):\n    return max((abs(a - b) for a, b in pairs), default=0)",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def max_difference(pairs):\n    return max((abs(a - b) for a, b in pairs), default=0)",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 3.98
+    },
+    {
+      "id": "mbpp/64",
+      "prompt": "Write a function to sort a list of tuples using the second value of each tuple.",
+      "public_tests": "assert subject_marks([('English', 88), ('Science', 90), ('Maths', 97), ('Social sciences', 82)])==[('Social sciences', 82), ('English', 88), ('Science', 90), ('Maths', 97)]",
+      "baseline": {
+        "response": "```python\ndef subject_marks(items):\n    return sorted(items, key=lambda item: item[1])\n```",
+        "code": "def subject_marks(items):\n    return sorted(items, key=lambda item: item[1])",
+        "usage": {
+          "completion_tokens": 25,
+          "prompt_tokens": 125,
+          "total_tokens": 150,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef subject_marks(items):\n    return sorted(items, key=lambda item: item[1])\n```",
+            "code": "def subject_marks(items):\n    return sorted(items, key=lambda item: item[1])",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 25,
+              "prompt_tokens": 206,
+              "total_tokens": 231,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def subject_marks(items):\n    return sorted(items, key=lambda item: item[1])",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def subject_marks(items):\n    return sorted(items, key=lambda item: item[1])",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 2.46
+    },
+    {
+      "id": "mbpp/65",
+      "prompt": "Write a function to flatten a list and sum all of its elements.",
+      "public_tests": "assert recursive_list_sum(([1, 2, [3,4],[5,6]]))==21",
+      "baseline": {
+        "response": "```python\ndef recursive_list_sum(items):\n    total = 0\n    for item in items:\n        if isinstance(item, (list, tuple)):\n            total += recursive_list_sum(item)\n        else:\n            total += item\n    return total\n```",
+        "code": "def recursive_list_sum(items):\n    total = 0\n    for item in items:\n        if isinstance(item, (list, tuple)):\n            total += recursive_list_sum(item)\n        else:\n            total += item\n    return total",
+        "usage": {
+          "completion_tokens": 114,
+          "prompt_tokens": 87,
+          "total_tokens": 201,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 53,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef recursive_list_sum(items):\n    total = 0\n    for item in items:\n        if isinstance(item, (list, tuple)):\n            total += recursive_list_sum(item)\n        else:\n            total += item\n    return total\n```",
+            "code": "def recursive_list_sum(items):\n    total = 0\n    for item in items:\n        if isinstance(item, (list, tuple)):\n            total += recursive_list_sum(item)\n        else:\n            total += item\n    return total",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 55,
+              "prompt_tokens": 198,
+              "total_tokens": 253,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def recursive_list_sum(items):\n    total = 0\n    for item in items:\n        if isinstance(item, (list, tuple)):\n            total += recursive_list_sum(item)\n        else:\n            total += item\n    return total",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def recursive_list_sum(items):\n    total = 0\n    for item in items:\n        if isinstance(item, (list, tuple)):\n            total += recursive_list_sum(item)\n        else:\n            total += item\n    return total",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 4.78
+    },
+    {
+      "id": "mbpp/66",
+      "prompt": "Write a python function to count the number of positive numbers in a list.",
+      "public_tests": "assert pos_count([1,-2,3,-4]) == 2",
+      "baseline": {
+        "response": "```python\ndef pos_count(numbers):\n    return sum(number > 0 for number in numbers)\n```",
+        "code": "def pos_count(numbers):\n    return sum(number > 0 for number in numbers)",
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 81,
+          "total_tokens": 105,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef pos_count(numbers):\n    return sum(number > 0 for number in numbers)\n```",
+            "code": "def pos_count(numbers):\n    return sum(number > 0 for number in numbers)",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 24,
+              "prompt_tokens": 161,
+              "total_tokens": 185,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def pos_count(numbers):\n    return sum(number > 0 for number in numbers)",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def pos_count(numbers):\n    return sum(number > 0 for number in numbers)",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 4.45
+    },
+    {
+      "id": "mbpp/67",
+      "prompt": "Write a function to find the number of ways to partition a set of Bell numbers.",
+      "public_tests": "assert bell_number(2)==2",
+      "baseline": {
+        "response": "```python\ndef bell_number(n: int) -> int:\n    \"\"\"Return the number of partitions of a set with n elements.\"\"\"\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n\n    row = [1]\n    for i in range(1, n + 1):\n        next_row = [row[-1]]\n        for j in range(1, i + 1):\n            next_row.append(next_row[-1] + row[j - 1])\n        row = next_row\n\n    return row[0]\n```",
+        "code": "def bell_number(n: int) -> int:\n    \"\"\"Return the number of partitions of a set with n elements.\"\"\"\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n\n    row = [1]\n    for i in range(1, n + 1):\n        next_row = [row[-1]]\n        for j in range(1, i + 1):\n            next_row.append(next_row[-1] + row[j - 1])\n        row = next_row\n\n    return row[0]",
+        "usage": {
+          "completion_tokens": 347,
+          "prompt_tokens": 75,
+          "total_tokens": 422,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 223,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef bell_number(n: int) -> int:\n    \"\"\"Return the number of partitions of a set with n elements.\"\"\"\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n\n    row = [1]\n    for i in range(1, n + 1):\n        next_row = [row[-1]]\n        for j in range(1, i + 1):\n            next_row.append(next_row[-1] + row[j - 1])\n        row = next_row\n\n    return row[0]\n```",
+            "code": "def bell_number(n: int) -> int:\n    \"\"\"Return the number of partitions of a set with n elements.\"\"\"\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n\n    row = [1]\n    for i in range(1, n + 1):\n        next_row = [row[-1]]\n        for j in range(1, i + 1):\n            next_row.append(next_row[-1] + row[j - 1])\n        row = next_row\n\n    return row[0]",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 165,
+              "prompt_tokens": 249,
+              "total_tokens": 414,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 41,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def bell_number(n: int) -> int:\n    \"\"\"Return the number of partitions of a set with n elements.\"\"\"\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n\n    row = [1]\n    for i in range(1, n + 1):\n        next_row = [row[-1]]\n        for j in range(1, i + 1):\n            next_row.append(next_row[-1] + row[j - 1])\n        row = next_row\n\n    return row[0]",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def bell_number(n: int) -> int:\n    \"\"\"Return the number of partitions of a set with n elements.\"\"\"\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n\n    row = [1]\n    for i in range(1, n + 1):\n        next_row = [row[-1]]\n        for j in range(1, i + 1):\n            next_row.append(next_row[-1] + row[j - 1])\n        row = next_row\n\n    return row[0]",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 8.0
+    },
+    {
+      "id": "mbpp/68",
+      "prompt": "Write a python function to check whether the given array is monotonic or not.",
+      "public_tests": "assert is_Monotonic([6, 5, 4, 4]) == True",
+      "baseline": {
+        "response": "```python\ndef is_Monotonic(array):\n    return (\n        all(array[i] <= array[i + 1] for i in range(len(array) - 1))\n        or all(array[i] >= array[i + 1] for i in range(len(array) - 1))\n    )\n```",
+        "code": "def is_Monotonic(array):\n    return (\n        all(array[i] <= array[i + 1] for i in range(len(array) - 1))\n        or all(array[i] >= array[i + 1] for i in range(len(array) - 1))\n    )",
+        "usage": {
+          "completion_tokens": 85,
+          "prompt_tokens": 87,
+          "total_tokens": 172,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 12,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef is_Monotonic(array):\n    return (\n        all(array[i] <= array[i + 1] for i in range(len(array) - 1))\n        or all(array[i] >= array[i + 1] for i in range(len(array) - 1))\n    )\n```",
+            "code": "def is_Monotonic(array):\n    return (\n        all(array[i] <= array[i + 1] for i in range(len(array) - 1))\n        or all(array[i] >= array[i + 1] for i in range(len(array) - 1))\n    )",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 67,
+              "prompt_tokens": 210,
+              "total_tokens": 277,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def is_Monotonic(array):\n    return (\n        all(array[i] <= array[i + 1] for i in range(len(array) - 1))\n        or all(array[i] >= array[i + 1] for i in range(len(array) - 1))\n    )",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def is_Monotonic(array):\n    return (\n        all(array[i] <= array[i + 1] for i in range(len(array) - 1))\n        or all(array[i] >= array[i + 1] for i in range(len(array) - 1))\n    )",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 3.22
+    },
+    {
+      "id": "mbpp/69",
+      "prompt": "Write a function to check whether a list contains the given sublist or not.",
+      "public_tests": "assert is_sublist([2,4,3,5,7],[3,7])==False",
+      "baseline": {
+        "response": "```python\ndef is_sublist(items, sublist):\n    \"\"\"Return True if sublist occurs consecutively in items.\"\"\"\n    return any(\n        items[i:i + len(sublist)] == sublist\n        for i in range(len(items) - len(sublist) + 1)\n    )\n```",
+        "code": "def is_sublist(items, sublist):\n    \"\"\"Return True if sublist occurs consecutively in items.\"\"\"\n    return any(\n        items[i:i + len(sublist)] == sublist\n        for i in range(len(items) - len(sublist) + 1)\n    )",
+        "usage": {
+          "completion_tokens": 136,
+          "prompt_tokens": 88,
+          "total_tokens": 224,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 65,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef is_sublist(items, sublist):\n    \"\"\"Return True if sublist occurs consecutively in items.\"\"\"\n    return any(\n        items[i:i + len(sublist)] == sublist\n        for i in range(len(items) - len(sublist) + 1)\n    )\n```",
+            "code": "def is_sublist(items, sublist):\n    \"\"\"Return True if sublist occurs consecutively in items.\"\"\"\n    return any(\n        items[i:i + len(sublist)] == sublist\n        for i in range(len(items) - len(sublist) + 1)\n    )",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 101,
+              "prompt_tokens": 209,
+              "total_tokens": 310,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 30,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def is_sublist(items, sublist):\n    \"\"\"Return True if sublist occurs consecutively in items.\"\"\"\n    return any(\n        items[i:i + len(sublist)] == sublist\n        for i in range(len(items) - len(sublist) + 1)\n    )",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def is_sublist(items, sublist):\n    \"\"\"Return True if sublist occurs consecutively in items.\"\"\"\n    return any(\n        items[i:i + len(sublist)] == sublist\n        for i in range(len(items) - len(sublist) + 1)\n    )",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 5.3
+    },
+    {
+      "id": "mbpp/70",
+      "prompt": "Write a function to find whether all the given tuples have equal length or not.",
+      "public_tests": "assert get_equal([(11, 22, 33), (44, 55, 66)]) == True",
+      "baseline": {
+        "response": "```python\ndef get_equal(tuples):\n    return len({len(item) for item in tuples}) <= 1\n```",
+        "code": "def get_equal(tuples):\n    return len({len(item) for item in tuples}) <= 1",
+        "usage": {
+          "completion_tokens": 87,
+          "prompt_tokens": 90,
+          "total_tokens": 177,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 52,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef get_equal(tuples):\n    return len({len(item) for item in tuples}) <= 1\n```",
+            "code": "def get_equal(tuples):\n    return len({len(item) for item in tuples}) <= 1",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 29,
+              "prompt_tokens": 175,
+              "total_tokens": 204,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def get_equal(tuples):\n    return len({len(item) for item in tuples}) <= 1",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def get_equal(tuples):\n    return len({len(item) for item in tuples}) <= 1",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 4.71
+    },
+    {
+      "id": "mbpp/71",
+      "prompt": "Write a function to sort a list of elements.",
+      "public_tests": "assert comb_sort([5, 15, 37, 25, 79]) == [5, 15, 25, 37, 79]",
+      "baseline": {
+        "response": "```python\ndef comb_sort(elements):\n    result = list(elements)\n    gap = len(result)\n    swapped = True\n\n    while gap > 1 or swapped:\n        gap = max(1, int(gap / 1.3))\n        swapped = False\n\n        for i in range(len(result) - gap):\n            if result[i] > result[i + gap]:\n                result[i], result[i + gap] = result[i + gap], result[i]\n                swapped = True\n\n    return result\n```",
+        "code": "def comb_sort(elements):\n    result = list(elements)\n    gap = len(result)\n    swapped = True\n\n    while gap > 1 or swapped:\n        gap = max(1, int(gap / 1.3))\n        swapped = False\n\n        for i in range(len(result) - gap):\n            if result[i] > result[i + gap]:\n                result[i], result[i + gap] = result[i + gap], result[i]\n                swapped = True\n\n    return result",
+        "usage": {
+          "completion_tokens": 146,
+          "prompt_tokens": 94,
+          "total_tokens": 240,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 32,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef comb_sort(elements):\n    result = list(elements)\n    gap = len(result)\n    swapped = True\n\n    while gap > 1 or swapped:\n        gap = max(1, int(gap / 1.3))\n        swapped = False\n\n        for i in range(len(result) - gap):\n            if result[i] > result[i + gap]:\n                result[i], result[i + gap] = result[i + gap], result[i]\n                swapped = True\n\n    return result\n```",
+            "code": "def comb_sort(elements):\n    result = list(elements)\n    gap = len(result)\n    swapped = True\n\n    while gap > 1 or swapped:\n        gap = max(1, int(gap / 1.3))\n        swapped = False\n\n        for i in range(len(result) - gap):\n            if result[i] > result[i + gap]:\n                result[i], result[i + gap] = result[i + gap], result[i]\n                swapped = True\n\n    return result",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 108,
+              "prompt_tokens": 258,
+              "total_tokens": 366,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def comb_sort(elements):\n    result = list(elements)\n    gap = len(result)\n    swapped = True\n\n    while gap > 1 or swapped:\n        gap = max(1, int(gap / 1.3))\n        swapped = False\n\n        for i in range(len(result) - gap):\n            if result[i] > result[i + gap]:\n                result[i], result[i + gap] = result[i + gap], result[i]\n                swapped = True\n\n    return result",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def comb_sort(elements):\n    result = list(elements)\n    gap = len(result)\n    swapped = True\n\n    while gap > 1 or swapped:\n        gap = max(1, int(gap / 1.3))\n        swapped = False\n\n        for i in range(len(result) - gap):\n            if result[i] > result[i + gap]:\n                result[i], result[i + gap] = result[i + gap], result[i]\n                swapped = True\n\n    return result",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 4.25
+    },
+    {
+      "id": "mbpp/72",
+      "prompt": "Write a python function to check whether the given number can be represented as the difference of two squares or not.",
+      "public_tests": "assert dif_Square(5) == True",
+      "baseline": {
+        "response": "```python\ndef dif_Square(n):\n    return n % 4 != 2\n```",
+        "code": "def dif_Square(n):\n    return n % 4 != 2",
+        "usage": {
+          "completion_tokens": 67,
+          "prompt_tokens": 82,
+          "total_tokens": 149,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 38,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef dif_Square(n):\n    return n % 4 != 2\n```",
+            "code": "def dif_Square(n):\n    return n % 4 != 2",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 60,
+              "prompt_tokens": 161,
+              "total_tokens": 221,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 31,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def dif_Square(n):\n    return n % 4 != 2",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def dif_Square(n):\n    return n % 4 != 2",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 4.45
+    },
+    {
+      "id": "mbpp/74",
+      "prompt": "Write a function to check whether it follows the sequence given in the patterns array.",
+      "public_tests": "assert is_samepatterns([\"red\",\"green\",\"green\"], [\"a\", \"b\", \"b\"])==True",
+      "baseline": {
+        "response": "```python\ndef is_samepatterns(sequence, patterns):\n    if len(sequence) != len(patterns):\n        return False\n\n    for i in range(len(sequence)):\n        for j in range(i):\n            if (sequence[i] == sequence[j]) != (patterns[i] == patterns[j]):\n                return False\n\n    return True\n```",
+        "code": "def is_samepatterns(sequence, patterns):\n    if len(sequence) != len(patterns):\n        return False\n\n    for i in range(len(sequence)):\n        for j in range(i):\n            if (sequence[i] == sequence[j]) != (patterns[i] == patterns[j]):\n                return False\n\n    return True",
+        "usage": {
+          "completion_tokens": 178,
+          "prompt_tokens": 89,
+          "total_tokens": 267,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 101,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef is_samepatterns(sequence, patterns):\n    if len(sequence) != len(patterns):\n        return False\n\n    for i in range(len(sequence)):\n        for j in range(i):\n            if (sequence[i] == sequence[j]) != (patterns[i] == patterns[j]):\n                return False\n\n    return True\n```",
+            "code": "def is_samepatterns(sequence, patterns):\n    if len(sequence) != len(patterns):\n        return False\n\n    for i in range(len(sequence)):\n        for j in range(i):\n            if (sequence[i] == sequence[j]) != (patterns[i] == patterns[j]):\n                return False\n\n    return True",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 91,
+              "prompt_tokens": 216,
+              "total_tokens": 307,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 14,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def is_samepatterns(sequence, patterns):\n    if len(sequence) != len(patterns):\n        return False\n\n    for i in range(len(sequence)):\n        for j in range(i):\n            if (sequence[i] == sequence[j]) != (patterns[i] == patterns[j]):\n                return False\n\n    return True",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def is_samepatterns(sequence, patterns):\n    if len(sequence) != len(patterns):\n        return False\n\n    for i in range(len(sequence)):\n        for j in range(i):\n            if (sequence[i] == sequence[j]) != (patterns[i] == patterns[j]):\n                return False\n\n    return True",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 5.86
+    },
+    {
+      "id": "mbpp/75",
+      "prompt": "Write a function to find tuples which have all elements divisible by k from the given list of tuples.",
+      "public_tests": "assert find_tuples([(6, 24, 12), (7, 9, 6), (12, 18, 21)], 6) == [(6, 24, 12)]",
+      "baseline": {
+        "response": "```python\ndef find_tuples(tuples, k):\n    return [item for item in tuples if all(value % k == 0 for value in item)]\n```",
+        "code": "def find_tuples(tuples, k):\n    return [item for item in tuples if all(value % k == 0 for value in item)]",
+        "usage": {
+          "completion_tokens": 79,
+          "prompt_tokens": 114,
+          "total_tokens": 193,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 36,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef find_tuples(tuples, k):\n    return [item for item in tuples if all(value % k == 0 for value in item)]\n```",
+            "code": "def find_tuples(tuples, k):\n    return [item for item in tuples if all(value % k == 0 for value in item)]",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 37,
+              "prompt_tokens": 207,
+              "total_tokens": 244,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def find_tuples(tuples, k):\n    return [item for item in tuples if all(value % k == 0 for value in item)]",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def find_tuples(tuples, k):\n    return [item for item in tuples if all(value % k == 0 for value in item)]",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 3.58
+    },
+    {
+      "id": "mbpp/77",
+      "prompt": "Write a python function to find whether a number is divisible by 11.",
+      "public_tests": "assert is_Diff (12345) == False",
+      "baseline": {
+        "response": "```python\ndef is_Diff(n):\n    return n % 11 == 0\n```",
+        "code": "def is_Diff(n):\n    return n % 11 == 0",
+        "usage": {
+          "completion_tokens": 74,
+          "prompt_tokens": 76,
+          "total_tokens": 150,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 45,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef is_Diff(n):\n    return n % 11 == 0\n```",
+            "code": "def is_Diff(n):\n    return n % 11 == 0",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 23,
+              "prompt_tokens": 155,
+              "total_tokens": 178,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def is_Diff(n):\n    return n % 11 == 0",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def is_Diff(n):\n    return n % 11 == 0",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 2.86
+    },
+    {
+      "id": "mbpp/79",
+      "prompt": "Write a python function to check whether the length of the word is odd or not.",
+      "public_tests": "assert word_len(\"Hadoop\") == False",
+      "baseline": {
+        "response": "```python\ndef word_len(word: str) -> bool:\n    return len(word) % 2 == 1\n```",
+        "code": "def word_len(word: str) -> bool:\n    return len(word) % 2 == 1",
+        "usage": {
+          "completion_tokens": 29,
+          "prompt_tokens": 77,
+          "total_tokens": 106,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef word_len(word: str) -> bool:\n    return len(word) % 2 == 1\n```",
+            "code": "def word_len(word: str) -> bool:\n    return len(word) % 2 == 1",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 29,
+              "prompt_tokens": 162,
+              "total_tokens": 191,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def word_len(word: str) -> bool:\n    return len(word) % 2 == 1",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def word_len(word: str) -> bool:\n    return len(word) % 2 == 1",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 2.97
+    },
+    {
+      "id": "mbpp/80",
+      "prompt": "Write a function to find the nth tetrahedral number.",
+      "public_tests": "assert tetrahedral_number(5) == 35",
+      "baseline": {
+        "response": "```python\ndef tetrahedral_number(n: int) -> int:\n    return n * (n + 1) * (n + 2) // 6\n```",
+        "code": "def tetrahedral_number(n: int) -> int:\n    return n * (n + 1) * (n + 2) // 6",
+        "usage": {
+          "completion_tokens": 39,
+          "prompt_tokens": 72,
+          "total_tokens": 111,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef tetrahedral_number(n: int) -> int:\n    return n * (n + 1) * (n + 2) // 6\n```",
+            "code": "def tetrahedral_number(n: int) -> int:\n    return n * (n + 1) * (n + 2) // 6",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 39,
+              "prompt_tokens": 167,
+              "total_tokens": 206,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def tetrahedral_number(n: int) -> int:\n    return n * (n + 1) * (n + 2) // 6",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def tetrahedral_number(n: int) -> int:\n    return n * (n + 1) * (n + 2) // 6",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 3.04
+    },
+    {
+      "id": "mbpp/82",
+      "prompt": "Write a function to find the volume of a sphere.",
+      "public_tests": "assert math.isclose(volume_sphere(10), 4188.790204786391, rel_tol=0.001)",
+      "baseline": {
+        "response": "```python\nimport math\n\n\ndef volume_sphere(radius):\n    return (4 / 3) * math.pi * radius**3\n```",
+        "code": "import math\n\n\ndef volume_sphere(radius):\n    return (4 / 3) * math.pi * radius**3",
+        "usage": {
+          "completion_tokens": 32,
+          "prompt_tokens": 87,
+          "total_tokens": 119,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\nimport math\n\n\ndef volume_sphere(radius):\n    return (4 / 3) * math.pi * radius**3\n```",
+            "code": "import math\n\n\ndef volume_sphere(radius):\n    return (4 / 3) * math.pi * radius**3",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 32,
+              "prompt_tokens": 175,
+              "total_tokens": 207,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "import math\n\n\ndef volume_sphere(radius):\n    return (4 / 3) * math.pi * radius**3",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "import math\n\n\ndef volume_sphere(radius):\n    return (4 / 3) * math.pi * radius**3",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 3.23
+    },
+    {
+      "id": "mbpp/83",
+      "prompt": "Write a python function to find the character made by adding the ASCII value of all the characters of the given string modulo 26.",
+      "public_tests": "assert get_Char(\"abc\") == \"f\"",
+      "baseline": {
+        "response": "```python\ndef get_Char(s):\n    total = sum(ord(char) - ord(\"a\") + 1 for char in s)\n    return chr(ord(\"a\") + (total - 1) % 26)\n```",
+        "code": "def get_Char(s):\n    total = sum(ord(char) - ord(\"a\") + 1 for char in s)\n    return chr(ord(\"a\") + (total - 1) % 26)",
+        "usage": {
+          "completion_tokens": 391,
+          "prompt_tokens": 87,
+          "total_tokens": 478,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 334,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef get_Char(s):\n    total = sum(ord(char) - ord(\"a\") + 1 for char in s)\n    return chr(ord(\"a\") + (total - 1) % 26)\n```",
+            "code": "def get_Char(s):\n    total = sum(ord(char) - ord(\"a\") + 1 for char in s)\n    return chr(ord(\"a\") + (total - 1) % 26)",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 154,
+              "prompt_tokens": 194,
+              "total_tokens": 348,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 97,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def get_Char(s):\n    total = sum(ord(char) - ord(\"a\") + 1 for char in s)\n    return chr(ord(\"a\") + (total - 1) % 26)",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def get_Char(s):\n    total = sum(ord(char) - ord(\"a\") + 1 for char in s)\n    return chr(ord(\"a\") + (total - 1) % 26)",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 9.74
+    },
+    {
+      "id": "mbpp/84",
+      "prompt": "Write a function to find the nth number in the newman conway sequence.",
+      "public_tests": "assert sequence(10) == 6",
+      "baseline": {
+        "response": "```python\ndef sequence(n: int) -> int:\n    if n < 1:\n        raise ValueError(\"n must be a positive integer\")\n\n    values = [0, 1, 1]\n    for i in range(3, n + 1):\n        previous = values[i - 1]\n        values.append(values[previous] + values[i - previous])\n\n    return values[n]\n```",
+        "code": "def sequence(n: int) -> int:\n    if n < 1:\n        raise ValueError(\"n must be a positive integer\")\n\n    values = [0, 1, 1]\n    for i in range(3, n + 1):\n        previous = values[i - 1]\n        values.append(values[previous] + values[i - previous])\n\n    return values[n]",
+        "usage": {
+          "completion_tokens": 172,
+          "prompt_tokens": 75,
+          "total_tokens": 247,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 79,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef sequence(n: int) -> int:\n    if n < 1:\n        raise ValueError(\"n must be a positive integer\")\n\n    values = [0, 1, 1]\n    for i in range(3, n + 1):\n        previous = values[i - 1]\n        values.append(values[previous] + values[i - previous])\n\n    return values[n]\n```",
+            "code": "def sequence(n: int) -> int:\n    if n < 1:\n        raise ValueError(\"n must be a positive integer\")\n\n    values = [0, 1, 1]\n    for i in range(3, n + 1):\n        previous = values[i - 1]\n        values.append(values[previous] + values[i - previous])\n\n    return values[n]",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 192,
+              "prompt_tokens": 218,
+              "total_tokens": 410,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 99,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def sequence(n: int) -> int:\n    if n < 1:\n        raise ValueError(\"n must be a positive integer\")\n\n    values = [0, 1, 1]\n    for i in range(3, n + 1):\n        previous = values[i - 1]\n        values.append(values[previous] + values[i - previous])\n\n    return values[n]",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def sequence(n: int) -> int:\n    if n < 1:\n        raise ValueError(\"n must be a positive integer\")\n\n    values = [0, 1, 1]\n    for i in range(3, n + 1):\n        previous = values[i - 1]\n        values.append(values[previous] + values[i - previous])\n\n    return values[n]",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 6.32
+    },
+    {
+      "id": "mbpp/85",
+      "prompt": "Write a function to find the surface area of a sphere.",
+      "public_tests": "assert math.isclose(surfacearea_sphere(10), 1256.6370614359173, rel_tol=0.001)",
+      "baseline": {
+        "response": "```python\nimport math\n\n\ndef surfacearea_sphere(radius):\n    return 4 * math.pi * radius ** 2\n```",
+        "code": "import math\n\n\ndef surfacearea_sphere(radius):\n    return 4 * math.pi * radius ** 2",
+        "usage": {
+          "completion_tokens": 30,
+          "prompt_tokens": 90,
+          "total_tokens": 120,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\nimport math\n\n\ndef surfacearea_sphere(radius):\n    return 4 * math.pi * radius ** 2\n```",
+            "code": "import math\n\n\ndef surfacearea_sphere(radius):\n    return 4 * math.pi * radius ** 2",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 30,
+              "prompt_tokens": 176,
+              "total_tokens": 206,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "import math\n\n\ndef surfacearea_sphere(radius):\n    return 4 * math.pi * radius ** 2",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "import math\n\n\ndef surfacearea_sphere(radius):\n    return 4 * math.pi * radius ** 2",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 3.09
+    },
+    {
+      "id": "mbpp/86",
+      "prompt": "Write a function to find nth centered hexagonal number.",
+      "public_tests": "assert centered_hexagonal_number(10) == 271",
+      "baseline": {
+        "response": "```python\ndef centered_hexagonal_number(n: int) -> int:\n    return 3 * n * (n - 1) + 1\n```",
+        "code": "def centered_hexagonal_number(n: int) -> int:\n    return 3 * n * (n - 1) + 1",
+        "usage": {
+          "completion_tokens": 60,
+          "prompt_tokens": 73,
+          "total_tokens": 133,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 18,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef centered_hexagonal_number(n: int) -> int:\n    return 3 * n * (n - 1) + 1\n```",
+            "code": "def centered_hexagonal_number(n: int) -> int:\n    return 3 * n * (n - 1) + 1",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 36,
+              "prompt_tokens": 165,
+              "total_tokens": 201,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def centered_hexagonal_number(n: int) -> int:\n    return 3 * n * (n - 1) + 1",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def centered_hexagonal_number(n: int) -> int:\n    return 3 * n * (n - 1) + 1",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 3.26
+    },
+    {
+      "id": "mbpp/87",
+      "prompt": "Write a function to merge three dictionaries into a single dictionary.",
+      "public_tests": "assert merge_dictionaries_three({ \"R\": \"Red\", \"B\": \"Black\", \"P\": \"Pink\" }, { \"G\": \"Green\", \"W\": \"White\" },{ \"O\": \"Orange\", \"W\": \"White\", \"B\": \"Black\" })=={'B': 'Black', 'R': 'Red', 'P': 'Pink', 'G': 'Green', 'W': 'White', 'O': 'Orange'}",
+      "baseline": {
+        "response": "```python\ndef merge_dictionaries_three(first, second, third):\n    return {**first, **second, **third}\n```",
+        "code": "def merge_dictionaries_three(first, second, third):\n    return {**first, **second, **third}",
+        "usage": {
+          "completion_tokens": 30,
+          "prompt_tokens": 158,
+          "total_tokens": 188,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": false,
+        "exec": {
+          "passed": false,
+          "exit_code": 1,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"tests.py\", line 2, in <module>\n    assert merge_dictionaries_three({ \"R\": \"Red\", \"B\": \"Black\", \"P\": \"Pink\" }, { \"G\": \"Green\", \"W\": \"White\" },{\"L\":\"lavender\",\"B\":\"Blue\"})=={'W': 'White', 'P': 'Pink', 'B': 'Black', 'R': 'Red', 'G': 'Green', 'L': 'lavender'}\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef merge_dictionaries_three(first, second, third):\n    return {**first, **second, **third}\n```",
+            "code": "def merge_dictionaries_three(first, second, third):\n    return {**first, **second, **third}",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 30,
+              "prompt_tokens": 244,
+              "total_tokens": 274,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": false
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def merge_dictionaries_three(first, second, third):\n    return {**first, **second, **third}",
+        "correct": false,
+        "exec": {
+          "passed": false,
+          "exit_code": 1,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"tests.py\", line 2, in <module>\n    assert merge_dictionaries_three({ \"R\": \"Red\", \"B\": \"Black\", \"P\": \"Pink\" }, { \"G\": \"Green\", \"W\": \"White\" },{\"L\":\"lavender\",\"B\":\"Blue\"})=={'W': 'White', 'P': 'Pink', 'B': 'Black', 'R': 'Red', 'G': 'Green', 'L': 'lavender'}\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def merge_dictionaries_three(first, second, third):\n    return {**first, **second, **third}",
+        "final_public_passed": true,
+        "correct": false,
+        "exec": {
+          "passed": false,
+          "exit_code": 1,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"tests.py\", line 2, in <module>\n    assert merge_dictionaries_three({ \"R\": \"Red\", \"B\": \"Black\", \"P\": \"Pink\" }, { \"G\": \"Green\", \"W\": \"White\" },{\"L\":\"lavender\",\"B\":\"Blue\"})=={'W': 'White', 'P': 'Pink', 'B': 'Black', 'R': 'Red', 'G': 'Green', 'L': 'lavender'}\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+        }
+      },
+      "elapsed_s": 2.65
+    },
+    {
+      "id": "mbpp/88",
+      "prompt": "Write a function to get the frequency of all the elements in a list, returned as a dictionary.",
+      "public_tests": "assert freq_count([10,10,10,10,20,20,20,20,40,40,50,50,30])==({10: 4, 20: 4, 40: 2, 50: 2, 30: 1})",
+      "baseline": {
+        "response": "```python\ndef freq_count(items):\n    counts = {}\n    for item in items:\n        counts[item] = counts.get(item, 0) + 1\n    return counts\n```",
+        "code": "def freq_count(items):\n    counts = {}\n    for item in items:\n        counts[item] = counts.get(item, 0) + 1\n    return counts",
+        "usage": {
+          "completion_tokens": 61,
+          "prompt_tokens": 131,
+          "total_tokens": 192,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 13,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef freq_count(items):\n    counts = {}\n    for item in items:\n        counts[item] = counts.get(item, 0) + 1\n    return counts\n```",
+            "code": "def freq_count(items):\n    counts = {}\n    for item in items:\n        counts[item] = counts.get(item, 0) + 1\n    return counts",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 42,
+              "prompt_tokens": 229,
+              "total_tokens": 271,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def freq_count(items):\n    counts = {}\n    for item in items:\n        counts[item] = counts.get(item, 0) + 1\n    return counts",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def freq_count(items):\n    counts = {}\n    for item in items:\n        counts[item] = counts.get(item, 0) + 1\n    return counts",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 3.18
+    },
+    {
+      "id": "mbpp/89",
+      "prompt": "Write a function to find the closest smaller number than n.",
+      "public_tests": "assert closest_num(11) == 10",
+      "baseline": {
+        "response": "```python\ndef closest_num(n):\n    return n - 1\n```",
+        "code": "def closest_num(n):\n    return n - 1",
+        "usage": {
+          "completion_tokens": 78,
+          "prompt_tokens": 72,
+          "total_tokens": 150,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 53,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef closest_num(n):\n    return n - 1\n```",
+            "code": "def closest_num(n):\n    return n - 1",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 19,
+              "prompt_tokens": 147,
+              "total_tokens": 166,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def closest_num(n):\n    return n - 1",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def closest_num(n):\n    return n - 1",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 3.21
+    },
+    {
+      "id": "mbpp/90",
+      "prompt": "Write a python function to find the length of the longest word.",
+      "public_tests": "assert len_log([\"python\",\"PHP\",\"bigdata\"]) == 7",
+      "baseline": {
+        "response": "```python\ndef len_log(words):\n    return max((len(word) for word in words), default=0)\n```",
+        "code": "def len_log(words):\n    return max((len(word) for word in words), default=0)",
+        "usage": {
+          "completion_tokens": 64,
+          "prompt_tokens": 78,
+          "total_tokens": 142,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 30,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef len_log(words):\n    return max((len(word) for word in words), default=0)\n```",
+            "code": "def len_log(words):\n    return max((len(word) for word in words), default=0)",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 28,
+              "prompt_tokens": 162,
+              "total_tokens": 190,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def len_log(words):\n    return max((len(word) for word in words), default=0)",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def len_log(words):\n    return max((len(word) for word in words), default=0)",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 3.49
+    },
+    {
+      "id": "mbpp/91",
+      "prompt": "Write a function to check if a string is present as a substring in a given list of string values.",
+      "public_tests": "assert find_substring([\"red\", \"black\", \"white\", \"green\", \"orange\"],\"ack\")==True",
+      "baseline": {
+        "response": "```python\ndef find_substring(values: list[str], substring: str) -> bool:\n    return any(substring in value for value in values)\n```",
+        "code": "def find_substring(values: list[str], substring: str) -> bool:\n    return any(substring in value for value in values)",
+        "usage": {
+          "completion_tokens": 59,
+          "prompt_tokens": 95,
+          "total_tokens": 154,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 18,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef find_substring(values: list[str], substring: str) -> bool:\n    return any(substring in value for value in values)\n```",
+            "code": "def find_substring(values: list[str], substring: str) -> bool:\n    return any(substring in value for value in values)",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 35,
+              "prompt_tokens": 186,
+              "total_tokens": 221,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def find_substring(values: list[str], substring: str) -> bool:\n    return any(substring in value for value in values)",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def find_substring(values: list[str], substring: str) -> bool:\n    return any(substring in value for value in values)",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 3.06
+    },
+    {
+      "id": "mbpp/92",
+      "prompt": "Write a function to check whether the given number is undulating or not.",
+      "public_tests": "assert is_undulating(1212121) == True",
+      "baseline": {
+        "response": "```python\ndef is_undulating(number):\n    if not isinstance(number, int) or number < 0:\n        return False\n\n    digits = str(number)\n    return (\n        len(digits) >= 3\n        and digits[0] != digits[1]\n        and all(digits[i] == digits[i - 2] for i in range(2, len(digits)))\n    )\n```",
+        "code": "def is_undulating(number):\n    if not isinstance(number, int) or number < 0:\n        return False\n\n    digits = str(number)\n    return (\n        len(digits) >= 3\n        and digits[0] != digits[1]\n        and all(digits[i] == digits[i - 2] for i in range(2, len(digits)))\n    )",
+        "usage": {
+          "completion_tokens": 237,
+          "prompt_tokens": 78,
+          "total_tokens": 315,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 143,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef is_undulating(number):\n    if not isinstance(number, int) or number < 0:\n        return False\n\n    digits = str(number)\n    return (\n        len(digits) >= 3\n        and digits[0] != digits[1]\n        and all(digits[i] == digits[i - 2] for i in range(2, len(digits)))\n    )\n```",
+            "code": "def is_undulating(number):\n    if not isinstance(number, int) or number < 0:\n        return False\n\n    digits = str(number)\n    return (\n        len(digits) >= 3\n        and digits[0] != digits[1]\n        and all(digits[i] == digits[i - 2] for i in range(2, len(digits)))\n    )",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 117,
+              "prompt_tokens": 222,
+              "total_tokens": 339,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 23,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def is_undulating(number):\n    if not isinstance(number, int) or number < 0:\n        return False\n\n    digits = str(number)\n    return (\n        len(digits) >= 3\n        and digits[0] != digits[1]\n        and all(digits[i] == digits[i - 2] for i in range(2, len(digits)))\n    )",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def is_undulating(number):\n    if not isinstance(number, int) or number < 0:\n        return False\n\n    digits = str(number)\n    return (\n        len(digits) >= 3\n        and digits[0] != digits[1]\n        and all(digits[i] == digits[i - 2] for i in range(2, len(digits)))\n    )",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 6.24
+    },
+    {
+      "id": "mbpp/93",
+      "prompt": "Write a function to calculate the value of 'a' to the power 'b'.",
+      "public_tests": "assert power(3,4) == 81",
+      "baseline": {
+        "response": "```python\ndef power(a, b):\n    return a ** b\n```",
+        "code": "def power(a, b):\n    return a ** b",
+        "usage": {
+          "completion_tokens": 19,
+          "prompt_tokens": 78,
+          "total_tokens": 97,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef power(a, b):\n    return a ** b\n```",
+            "code": "def power(a, b):\n    return a ** b",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 19,
+              "prompt_tokens": 153,
+              "total_tokens": 172,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def power(a, b):\n    return a ** b",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def power(a, b):\n    return a ** b",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 2.86
+    },
+    {
+      "id": "mbpp/94",
+      "prompt": "Given a list of tuples, write a function that returns the first value of the tuple with the smallest second value.",
+      "public_tests": "assert index_minimum([('Rash', 143), ('Manjeet', 200), ('Varsha', 100)]) == 'Varsha'",
+      "baseline": {
+        "response": "```python\ndef index_minimum(items):\n    return min(items, key=lambda item: item[1])[0]\n```",
+        "code": "def index_minimum(items):\n    return min(items, key=lambda item: item[1])[0]",
+        "usage": {
+          "completion_tokens": 52,
+          "prompt_tokens": 105,
+          "total_tokens": 157,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 18,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef index_minimum(items):\n    return min(items, key=lambda item: item[1])[0]\n```",
+            "code": "def index_minimum(items):\n    return min(items, key=lambda item: item[1])[0]",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 28,
+              "prompt_tokens": 189,
+              "total_tokens": 217,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def index_minimum(items):\n    return min(items, key=lambda item: item[1])[0]",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def index_minimum(items):\n    return min(items, key=lambda item: item[1])[0]",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 2.99
+    },
+    {
+      "id": "mbpp/95",
+      "prompt": "Write a python function to find the length of the smallest list in a list of lists.",
+      "public_tests": "assert Find_Min_Length([[1],[1,2]]) == 1",
+      "baseline": {
+        "response": "```python\ndef Find_Min_Length(lists):\n    return min((len(sublist) for sublist in lists), default=0)\n```",
+        "code": "def Find_Min_Length(lists):\n    return min((len(sublist) for sublist in lists), default=0)",
+        "usage": {
+          "completion_tokens": 105,
+          "prompt_tokens": 83,
+          "total_tokens": 188,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 67,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef Find_Min_Length(lists):\n    return min((len(sublist) for sublist in lists), default=0)\n```",
+            "code": "def Find_Min_Length(lists):\n    return min((len(sublist) for sublist in lists), default=0)",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 32,
+              "prompt_tokens": 171,
+              "total_tokens": 203,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def Find_Min_Length(lists):\n    return min((len(sublist) for sublist in lists), default=0)",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def Find_Min_Length(lists):\n    return min((len(sublist) for sublist in lists), default=0)",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 4.62
+    },
+    {
+      "id": "mbpp/96",
+      "prompt": "Write a python function to find the number of divisors of a given integer.",
+      "public_tests": "assert divisor(15) == 4",
+      "baseline": {
+        "response": "```python\nfrom math import isqrt\n\n\ndef divisor(n: int) -> int:\n    if n == 0:\n        raise ValueError(\"Zero has infinitely many divisors\")\n\n    n = abs(n)\n    count = 0\n    for i in range(1, isqrt(n) + 1):\n        if n % i == 0:\n            count += 1 if i * i == n else 2\n    return count\n```",
+        "code": "from math import isqrt\n\n\ndef divisor(n: int) -> int:\n    if n == 0:\n        raise ValueError(\"Zero has infinitely many divisors\")\n\n    n = abs(n)\n    count = 0\n    for i in range(1, isqrt(n) + 1):\n        if n % i == 0:\n            count += 1 if i * i == n else 2\n    return count",
+        "usage": {
+          "completion_tokens": 174,
+          "prompt_tokens": 75,
+          "total_tokens": 249,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 71,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\nfrom math import isqrt\n\n\ndef divisor(n: int) -> int:\n    if n == 0:\n        raise ValueError(\"Zero has infinitely many divisors\")\n\n    n = abs(n)\n    count = 0\n    for i in range(1, isqrt(n) + 1):\n        if n % i == 0:\n            count += 1 if i * i == n else 2\n    return count\n```",
+            "code": "from math import isqrt\n\n\ndef divisor(n: int) -> int:\n    if n == 0:\n        raise ValueError(\"Zero has infinitely many divisors\")\n\n    n = abs(n)\n    count = 0\n    for i in range(1, isqrt(n) + 1):\n        if n % i == 0:\n            count += 1 if i * i == n else 2\n    return count",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 97,
+              "prompt_tokens": 228,
+              "total_tokens": 325,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "from math import isqrt\n\n\ndef divisor(n: int) -> int:\n    if n == 0:\n        raise ValueError(\"Zero has infinitely many divisors\")\n\n    n = abs(n)\n    count = 0\n    for i in range(1, isqrt(n) + 1):\n        if n % i == 0:\n            count += 1 if i * i == n else 2\n    return count",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "from math import isqrt\n\n\ndef divisor(n: int) -> int:\n    if n == 0:\n        raise ValueError(\"Zero has infinitely many divisors\")\n\n    n = abs(n)\n    count = 0\n    for i in range(1, isqrt(n) + 1):\n        if n % i == 0:\n            count += 1 if i * i == n else 2\n    return count",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 4.81
+    },
+    {
+      "id": "mbpp/97",
+      "prompt": "Write a function to find frequency of each element in a flattened list of lists, returned in a dictionary.",
+      "public_tests": "assert frequency_lists([[1, 2, 3, 2], [4, 5, 6, 2], [7, 8, 9, 5]])=={1: 1, 2: 3, 3: 1, 4: 1, 5: 2, 6: 1, 7: 1, 8: 1, 9: 1}",
+      "baseline": {
+        "response": "```python\ndef frequency_lists(lists):\n    frequencies = {}\n    for sublist in lists:\n        for element in sublist:\n            frequencies[element] = frequencies.get(element, 0) + 1\n    return frequencies\n```",
+        "code": "def frequency_lists(lists):\n    frequencies = {}\n    for sublist in lists:\n        for element in sublist:\n            frequencies[element] = frequencies.get(element, 0) + 1\n    return frequencies",
+        "usage": {
+          "completion_tokens": 79,
+          "prompt_tokens": 165,
+          "total_tokens": 244,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 22,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef frequency_lists(lists):\n    frequencies = {}\n    for sublist in lists:\n        for element in sublist:\n            frequencies[element] = frequencies.get(element, 0) + 1\n    return frequencies\n```",
+            "code": "def frequency_lists(lists):\n    frequencies = {}\n    for sublist in lists:\n        for element in sublist:\n            frequencies[element] = frequencies.get(element, 0) + 1\n    return frequencies",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 51,
+              "prompt_tokens": 272,
+              "total_tokens": 323,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def frequency_lists(lists):\n    frequencies = {}\n    for sublist in lists:\n        for element in sublist:\n            frequencies[element] = frequencies.get(element, 0) + 1\n    return frequencies",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def frequency_lists(lists):\n    frequencies = {}\n    for sublist in lists:\n        for element in sublist:\n            frequencies[element] = frequencies.get(element, 0) + 1\n    return frequencies",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 3.68
+    },
+    {
+      "id": "mbpp/98",
+      "prompt": "Write a function to multiply all the numbers in a list and divide with the length of the list.",
+      "public_tests": "assert math.isclose(multiply_num((8, 2, 3, -1, 7)), -67.2, rel_tol=0.001)",
+      "baseline": {
+        "response": "```python\nimport math\n\n\ndef multiply_num(numbers):\n    return math.prod(numbers) / len(numbers)\n```",
+        "code": "import math\n\n\ndef multiply_num(numbers):\n    return math.prod(numbers) / len(numbers)",
+        "usage": {
+          "completion_tokens": 99,
+          "prompt_tokens": 104,
+          "total_tokens": 203,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 68,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\nimport math\n\n\ndef multiply_num(numbers):\n    return math.prod(numbers) / len(numbers)\n```",
+            "code": "import math\n\n\ndef multiply_num(numbers):\n    return math.prod(numbers) / len(numbers)",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 57,
+              "prompt_tokens": 185,
+              "total_tokens": 242,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 26,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "import math\n\n\ndef multiply_num(numbers):\n    return math.prod(numbers) / len(numbers)",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "import math\n\n\ndef multiply_num(numbers):\n    return math.prod(numbers) / len(numbers)",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 4.5
+    },
+    {
+      "id": "mbpp/99",
+      "prompt": "Write a function to convert the given decimal number to its binary equivalent, represented as a string with no leading zeros.",
+      "public_tests": "assert decimal_to_binary(8) == '1000'",
+      "baseline": {
+        "response": "```python\ndef decimal_to_binary(number: int) -> str:\n    return format(number, \"b\")\n```",
+        "code": "def decimal_to_binary(number: int) -> str:\n    return format(number, \"b\")",
+        "usage": {
+          "completion_tokens": 95,
+          "prompt_tokens": 85,
+          "total_tokens": 180,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 63,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef decimal_to_binary(number: int) -> str:\n    return format(number, \"b\")\n```",
+            "code": "def decimal_to_binary(number: int) -> str:\n    return format(number, \"b\")",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 26,
+              "prompt_tokens": 167,
+              "total_tokens": 193,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def decimal_to_binary(number: int) -> str:\n    return format(number, \"b\")",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def decimal_to_binary(number: int) -> str:\n    return format(number, \"b\")",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 4.6
+    },
+    {
+      "id": "mbpp/100",
+      "prompt": "Write a function to find the next smallest palindrome of a specified integer, returned as an integer.",
+      "public_tests": "assert next_smallest_palindrome(99)==101",
+      "baseline": {
+        "response": "```python\ndef next_smallest_palindrome(n: int) -> int:\n    \"\"\"Return the smallest palindrome strictly greater than n.\"\"\"\n    if n < 0:\n        return 0\n\n    digits = str(n)\n    length = len(digits)\n    half_length = (length + 1) // 2\n    prefix = digits[:half_length]\n\n    def mirror(left: str) -> int:\n        return int(left + left[: length // 2][::-1])\n\n    candidate = mirror(prefix)\n    if candidate > n:\n        return candidate\n\n    prefix = str(int(prefix) + 1)\n    if len(prefix) > half_length:\n        return 10**length + 1\n\n    return mirror(prefix)\n```",
+        "code": "def next_smallest_palindrome(n: int) -> int:\n    \"\"\"Return the smallest palindrome strictly greater than n.\"\"\"\n    if n < 0:\n        return 0\n\n    digits = str(n)\n    length = len(digits)\n    half_length = (length + 1) // 2\n    prefix = digits[:half_length]\n\n    def mirror(left: str) -> int:\n        return int(left + left[: length // 2][::-1])\n\n    candidate = mirror(prefix)\n    if candidate > n:\n        return candidate\n\n    prefix = str(int(prefix) + 1)\n    if len(prefix) > half_length:\n        return 10**length + 1\n\n    return mirror(prefix)",
+        "usage": {
+          "completion_tokens": 347,
+          "prompt_tokens": 80,
+          "total_tokens": 427,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 187,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef next_smallest_palindrome(n: int) -> int:\n    \"\"\"Return the smallest palindrome strictly greater than n.\"\"\"\n    if n < 0:\n        return 0\n\n    digits = str(n)\n    length = len(digits)\n    half_length = (length + 1) // 2\n    prefix = digits[:half_length]\n\n    def mirror(left: str) -> int:\n        return int(left + left[: length // 2][::-1])\n\n    candidate = mirror(prefix)\n    if candidate > n:\n        return candidate\n\n    prefix = str(int(prefix) + 1)\n    if len(prefix) > half_length:\n        return 10**length + 1\n\n    return mirror(prefix)\n```",
+            "code": "def next_smallest_palindrome(n: int) -> int:\n    \"\"\"Return the smallest palindrome strictly greater than n.\"\"\"\n    if n < 0:\n        return 0\n\n    digits = str(n)\n    length = len(digits)\n    half_length = (length + 1) // 2\n    prefix = digits[:half_length]\n\n    def mirror(left: str) -> int:\n        return int(left + left[: length // 2][::-1])\n\n    candidate = mirror(prefix)\n    if candidate > n:\n        return candidate\n\n    prefix = str(int(prefix) + 1)\n    if len(prefix) > half_length:\n        return 10**length + 1\n\n    return mirror(prefix)",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 247,
+              "prompt_tokens": 290,
+              "total_tokens": 537,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 87,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def next_smallest_palindrome(n: int) -> int:\n    \"\"\"Return the smallest palindrome strictly greater than n.\"\"\"\n    if n < 0:\n        return 0\n\n    digits = str(n)\n    length = len(digits)\n    half_length = (length + 1) // 2\n    prefix = digits[:half_length]\n\n    def mirror(left: str) -> int:\n        return int(left + left[: length // 2][::-1])\n\n    candidate = mirror(prefix)\n    if candidate > n:\n        return candidate\n\n    prefix = str(int(prefix) + 1)\n    if len(prefix) > half_length:\n        return 10**length + 1\n\n    return mirror(prefix)",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def next_smallest_palindrome(n: int) -> int:\n    \"\"\"Return the smallest palindrome strictly greater than n.\"\"\"\n    if n < 0:\n        return 0\n\n    digits = str(n)\n    length = len(digits)\n    half_length = (length + 1) // 2\n    prefix = digits[:half_length]\n\n    def mirror(left: str) -> int:\n        return int(left + left[: length // 2][::-1])\n\n    candidate = mirror(prefix)\n    if candidate > n:\n        return candidate\n\n    prefix = str(int(prefix) + 1)\n    if len(prefix) > half_length:\n        return 10**length + 1\n\n    return mirror(prefix)",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 9.56
+    },
+    {
+      "id": "mbpp/101",
+      "prompt": "Write a function to find the kth element in the given array using 1-based indexing.",
+      "public_tests": "assert kth_element([12,3,5,7,19], 2) == 3",
+      "baseline": {
+        "response": "```python\ndef kth_element(array, k):\n    return array[k - 1]\n```",
+        "code": "def kth_element(array, k):\n    return array[k - 1]",
+        "usage": {
+          "completion_tokens": 79,
+          "prompt_tokens": 89,
+          "total_tokens": 168,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 51,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef kth_element(array, k):\n    return array[k - 1]\n```",
+            "code": "def kth_element(array, k):\n    return array[k - 1]",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 22,
+              "prompt_tokens": 167,
+              "total_tokens": 189,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def kth_element(array, k):\n    return array[k - 1]",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def kth_element(array, k):\n    return array[k - 1]",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 3.7
+    },
+    {
+      "id": "mbpp/102",
+      "prompt": "Write a function to convert a snake case string to camel case string.",
+      "public_tests": "assert snake_to_camel('python_program')=='PythonProgram'",
+      "baseline": {
+        "response": "```python\ndef snake_to_camel(text: str) -> str:\n    return \"\".join(word.capitalize() for word in text.split(\"_\"))\n```",
+        "code": "def snake_to_camel(text: str) -> str:\n    return \"\".join(word.capitalize() for word in text.split(\"_\"))",
+        "usage": {
+          "completion_tokens": 93,
+          "prompt_tokens": 77,
+          "total_tokens": 170,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 54,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "intrinsic": {
+        "rounds": [
+          {
+            "response": "```python\ndef snake_to_camel(text: str) -> str:\n    return \"\".join(word.capitalize() for word in text.split(\"_\"))\n```",
+            "code": "def snake_to_camel(text: str) -> str:\n    return \"\".join(word.capitalize() for word in text.split(\"_\"))",
+            "changed": false,
+            "usage": {
+              "completion_tokens": 55,
+              "prompt_tokens": 166,
+              "total_tokens": 221,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 16,
+                "rejected_prediction_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              }
+            },
+            "hidden_correct": true
+          }
+        ],
+        "stop_reason": "model_kept_answer",
+        "final_code": "def snake_to_camel(text: str) -> str:\n    return \"\".join(word.capitalize() for word in text.split(\"_\"))",
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "grounded": {
+        "rounds": [],
+        "stop_reason": "public_tests_passed",
+        "feedback_triggered": false,
+        "final_code": "def snake_to_camel(text: str) -> str:\n    return \"\".join(word.capitalize() for word in text.split(\"_\"))",
+        "final_public_passed": true,
+        "correct": true,
+        "exec": {
+          "passed": true,
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "elapsed_s": 3.93
+    }
+  ]
+}
