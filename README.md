@@ -48,9 +48,12 @@ Requires Python 3.10+ and an OpenAI API key.
 
 ```bash
 python -m venv .venv && .venv/bin/pip install -r requirements.txt
-cp .env.example .env          # or inject the key: op run --env-file=.env.op -- python main.py
+cp .env.example .env
 python main.py --dataset mbpp --max-samples 50
 ```
+
+To keep the key out of `.env`, inject it from 1Password instead: create `.env.op` (git-ignored) with
+`OPENAI_API_KEY=op://<vault>/<item>/<field>` and run `op run --env-file=.env.op -- python main.py`.
 
 BigCodeBench-Hard runs generated code in a separate Python 3.10 environment with the benchmark's pinned
 libraries (setup commands at the top of `requirements-bigcodebench.txt`):

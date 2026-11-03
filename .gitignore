@@ -1,4 +1,5 @@
 .env
+.env.op
 data/*
 !data/excluded-*.json
 __pycache__/
